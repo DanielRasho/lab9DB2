@@ -81,7 +81,7 @@ type Restaurant struct {
 	menu Menu
 }
 
-func (self *Restaurant) toCSV() []string {
+func (self Restaurant) toCSV() []string {
 	b := []string{}
 
 	b = append(b, self.name)
@@ -137,16 +137,33 @@ func createRandomRestaurant(r *rand.Rand) Restaurant {
 	}
 }
 
+type csvable interface {
+	toCSV() []string
+}
+
+func GenAndWriteToCSV[T csvable](r *rand.Rand, filename string, quantity uint, generator func(*rand.Rand) T) {
+	data := [][]string{}
+	for range quantity {
+		rowData := createRandomRestaurant(r)
+		data = append(data, rowData.toCSV())
+	}
+
+	file, err := os.Create(filename)
+	if err != nil {
+		panic(err)
+	}
+	writer := csv.NewWriter(file)
+
+	err = writer.WriteAll(data)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func main() {
 
 	s := rand.NewSource(int64(696969))
 	r := rand.New(s)
-
-	restaurants := [][]string{}
-	for range 1000 {
-		restaurant := createRandomRestaurant(r)
-		restaurants = append(restaurants, restaurant.toCSV())
-	}
 
 	os.RemoveAll("output")
 	err := os.Mkdir("output", 0750)
@@ -154,15 +171,5 @@ func main() {
 		panic(err)
 	}
 
-	file, err := os.Create("output/restaurants.csv")
-	if err != nil {
-		panic(err)
-	}
-	writer := csv.NewWriter(file)
-
-	err = writer.WriteAll(restaurants)
-	if err != nil {
-		panic(err)
-	}
-
+	GenAndWriteToCSV(r, "output/restaurants.csv", 1000, createRandomRestaurant)
 }
