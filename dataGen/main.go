@@ -13,6 +13,54 @@ func pickFromSlice[T any](r *rand.Rand, slice []T) T {
 	return slice[idx]
 }
 
+type User struct {
+	Firstname string
+	Lastname  string
+	Age       uint
+	Gender    string
+}
+
+func (self User) toCSV() []string {
+	b := []string{}
+
+	b = append(b, self.Firstname)
+	b = append(b, self.Lastname)
+	b = append(b, strconv.FormatUint(uint64(self.Age), 10))
+	b = append(b, self.Gender)
+
+	return b
+}
+
+func createRandomUser(r *rand.Rand) User {
+	firstnames := []string{
+		"Maria",
+		"Jose",
+		"Flavio",
+		"Pablo",
+		"Nicolle",
+		"Julia",
+	}
+
+	lastnames := []string{
+		"Galan",
+		"Paz",
+		"Guillermo",
+		"Toc",
+	}
+
+	gender := []string{
+		"Masculino",
+		"Femenino",
+	}
+
+	return User{
+		Firstname: pickFromSlice(r, firstnames),
+		Lastname:  pickFromSlice(r, lastnames),
+		Age:       uint(r.Intn(40) + 18),
+		Gender:    pickFromSlice(r, gender),
+	}
+}
+
 type MenuItem struct {
 	Name  string
 	Price float64
@@ -141,10 +189,10 @@ type csvable interface {
 	toCSV() []string
 }
 
-func GenAndWriteToCSV[T csvable](r *rand.Rand, filename string, quantity uint, generator func(*rand.Rand) T) {
+func GenAndWriteToCSV[T csvable](r *rand.Rand, filename string, quantity uint, generator func(*rand.Rand) T, header []string) {
 	data := [][]string{}
 	for range quantity {
-		rowData := createRandomRestaurant(r)
+		rowData := generator(r)
 		data = append(data, rowData.toCSV())
 	}
 
@@ -153,6 +201,11 @@ func GenAndWriteToCSV[T csvable](r *rand.Rand, filename string, quantity uint, g
 		panic(err)
 	}
 	writer := csv.NewWriter(file)
+
+	err = writer.Write(header)
+	if err != nil {
+		panic(err)
+	}
 
 	err = writer.WriteAll(data)
 	if err != nil {
@@ -171,5 +224,22 @@ func main() {
 		panic(err)
 	}
 
-	GenAndWriteToCSV(r, "output/restaurants.csv", 1000, createRandomRestaurant)
+	header := []string{
+		"Name",
+		"Location",
+		"Dob",
+		"Category",
+		"Pricing",
+		"Photo",
+		"Menu",
+	}
+	GenAndWriteToCSV(r, "output/restaurants.csv", 50, createRandomRestaurant, header)
+
+	header = []string{
+		"Firstname",
+		"Lastname",
+		"Age",
+		"Gender",
+	}
+	GenAndWriteToCSV(r, "output/users.csv", 300, createRandomUser, header)
 }
