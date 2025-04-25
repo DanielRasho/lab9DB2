@@ -8,9 +8,108 @@ import (
 	"strconv"
 )
 
+const MAX_RESTAURANTS int = 50
+const MAX_CLIENTS int = 400
+const MAX_ORDERS int = 1000
+
 func pickFromSlice[T any](r *rand.Rand, slice []T) T {
 	idx := r.Intn(len(slice))
 	return slice[idx]
+}
+
+type Review struct {
+	restaurant string
+	client     string
+	rating     uint
+	relevance  uint
+}
+
+func createRandomReview(r *rand.Rand) Review {
+	return Review{}
+}
+
+type OrderItem struct {
+	Name  string
+	Price float64
+}
+
+func createRandomOrderItem(r *rand.Rand) OrderItem {
+	menuItemNames := []string{
+		"Nigiri",
+		"Miso Soup",
+		"Pizza Pepperoni",
+		"Pizza Margarita",
+		"Butter Chicken",
+	}
+
+	name := pickFromSlice(r, menuItemNames)
+	price := r.Float64() * 150
+
+	return OrderItem{
+		Name:  name,
+		Price: price,
+	}
+
+}
+
+type Order struct {
+	client     string
+	restaurant string
+	// : [“delivered”, “in-process”, “accepted”],
+	state    string
+	date     string
+	pricing  float64
+	quantity uint
+	item     OrderItem
+}
+
+func (self Order) toCSV() []string {
+	b := []string{}
+
+	b = append(b, self.client)
+	b = append(b, self.restaurant)
+	b = append(b, self.state)
+	b = append(b, self.date)
+	b = append(b, strconv.FormatFloat(self.pricing, 'f', 2, 64))
+	b = append(b, strconv.FormatUint(uint64(self.quantity), 10))
+
+	item, err := json.Marshal(self.item)
+	if err != nil {
+		panic(err)
+	}
+	b = append(b, string(item))
+
+	return b
+}
+
+func createRandomOrder(r *rand.Rand) Order {
+	states := []string{
+		"delivered", "in-process", "accepted",
+	}
+
+	dobs := []string{
+		"2015-06-12T00:00:00Z",
+		"2018-03-22T00:00:00Z",
+		"2020-01-15T00:00:00Z",
+	}
+
+	client := r.Intn(MAX_CLIENTS) + 1
+	restaurant := r.Intn(MAX_RESTAURANTS) + 1
+	state := pickFromSlice(r, states)
+	date := pickFromSlice(r, dobs)
+	pricing := r.Float64() * 150
+	quantity := r.Intn(10) + 1
+	item := createRandomOrderItem(r)
+
+	return Order{
+		client:     strconv.FormatInt(int64(client), 10),
+		restaurant: strconv.FormatInt(int64(restaurant), 10),
+		state:      state,
+		date:       date,
+		pricing:    pricing,
+		quantity:   uint(quantity),
+		item:       item,
+	}
 }
 
 type User struct {
@@ -76,7 +175,7 @@ func createRandomMenuItem(r *rand.Rand) MenuItem {
 	}
 
 	name := pickFromSlice(r, menuItemNames)
-	price := r.NormFloat64()
+	price := r.Float64() * 150
 
 	return MenuItem{
 		Name:  name,
@@ -233,7 +332,7 @@ func main() {
 		"Photo",
 		"Menu",
 	}
-	GenAndWriteToCSV(r, "output/restaurants.csv", 50, createRandomRestaurant, header)
+	GenAndWriteToCSV(r, "output/restaurants.csv", uint(MAX_RESTAURANTS), createRandomRestaurant, header)
 
 	header = []string{
 		"Firstname",
@@ -241,5 +340,16 @@ func main() {
 		"Age",
 		"Gender",
 	}
-	GenAndWriteToCSV(r, "output/users.csv", 300, createRandomUser, header)
+	GenAndWriteToCSV(r, "output/users.csv", uint(MAX_CLIENTS), createRandomUser, header)
+
+	header = []string{
+		"Client",
+		"Restaurant",
+		"State",
+		"Date",
+		"Pricing",
+		"Quantity",
+		"Item",
+	}
+	GenAndWriteToCSV(r, "output/orders.csv", uint(MAX_ORDERS), createRandomOrder, header)
 }
