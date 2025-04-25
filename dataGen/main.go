@@ -6,11 +6,13 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"sync"
 )
 
 const MAX_RESTAURANTS int = 50
 const MAX_CLIENTS int = 400
 const MAX_ORDERS int = 1000
+const MAX_REVIEWS int = 1000
 
 func pickFromSlice[T any](r *rand.Rand, slice []T) T {
 	idx := r.Intn(len(slice))
@@ -24,8 +26,30 @@ type Review struct {
 	relevance  uint
 }
 
+func (self Review) toCSV() []string {
+	b := []string{}
+
+	b = append(b, self.restaurant)
+	b = append(b, self.client)
+	b = append(b, strconv.FormatUint(uint64(self.rating), 10))
+	b = append(b, strconv.FormatUint(uint64(self.relevance), 10))
+
+	return b
+}
+
 func createRandomReview(r *rand.Rand) Review {
-	return Review{}
+
+	restaurant := r.Intn(MAX_RESTAURANTS) + 1
+	client := r.Intn(MAX_CLIENTS) + 1
+	rating := r.Intn(11)
+	relevance := r.Intn(5) + 1
+
+	return Review{
+		restaurant: strconv.FormatUint(uint64(restaurant), 10),
+		client:     strconv.FormatUint(uint64(client), 10),
+		rating:     uint(rating),
+		relevance:  uint(relevance),
+	}
 }
 
 type OrderItem struct {
@@ -323,33 +347,61 @@ func main() {
 		panic(err)
 	}
 
-	header := []string{
-		"Name",
-		"Location",
-		"Dob",
-		"Category",
-		"Pricing",
-		"Photo",
-		"Menu",
-	}
-	GenAndWriteToCSV(r, "output/restaurants.csv", uint(MAX_RESTAURANTS), createRandomRestaurant, header)
+	var group sync.WaitGroup
 
-	header = []string{
-		"Firstname",
-		"Lastname",
-		"Age",
-		"Gender",
-	}
-	GenAndWriteToCSV(r, "output/users.csv", uint(MAX_CLIENTS), createRandomUser, header)
+	group.Add(1)
+	go func() {
+		defer group.Done()
+		header := []string{
+			"Name",
+			"Location",
+			"Dob",
+			"Category",
+			"Pricing",
+			"Photo",
+			"Menu",
+		}
+		GenAndWriteToCSV(r, "output/restaurants.csv", uint(MAX_RESTAURANTS), createRandomRestaurant, header)
+	}()
 
-	header = []string{
-		"Client",
-		"Restaurant",
-		"State",
-		"Date",
-		"Pricing",
-		"Quantity",
-		"Item",
-	}
-	GenAndWriteToCSV(r, "output/orders.csv", uint(MAX_ORDERS), createRandomOrder, header)
+	group.Add(1)
+	go func() {
+		defer group.Done()
+		header := []string{
+			"Firstname",
+			"Lastname",
+			"Age",
+			"Gender",
+		}
+		GenAndWriteToCSV(r, "output/users.csv", uint(MAX_CLIENTS), createRandomUser, header)
+	}()
+
+	group.Add(1)
+	go func() {
+		defer group.Done()
+		header := []string{
+			"Client",
+			"Restaurant",
+			"State",
+			"Date",
+			"Pricing",
+			"Quantity",
+			"Item",
+		}
+		GenAndWriteToCSV(r, "output/orders.csv", uint(MAX_ORDERS), createRandomOrder, header)
+	}()
+
+	group.Add(1)
+	go func() {
+		defer group.Done()
+		header := []string{
+			"Restaurant",
+			"Client",
+			"Rating",
+			"Relevance",
+		}
+		GenAndWriteToCSV(r, "output/reviews.csv", uint(MAX_REVIEWS), createRandomReview, header)
+	}()
+
+	group.Wait()
 }
