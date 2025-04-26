@@ -313,10 +313,18 @@ type csvable interface {
 }
 
 func GenAndWriteToCSV[T csvable](r *rand.Rand, filename string, quantity uint, generator func(*rand.Rand) T, header []string) {
-	data := [][]string{}
-	for range quantity {
+	csvCols := []string{"_id"}
+	csvCols = append(csvCols, header...)
+	data := [][]string{csvCols}
+
+	for idx := range quantity {
+		id := strconv.FormatUint(uint64(idx+1), 10)
+		csvData := []string{id}
+
 		rowData := generator(r)
-		data = append(data, rowData.toCSV())
+		csvData = append(csvData, rowData.toCSV()...)
+
+		data = append(data, csvData)
 	}
 
 	file, err := os.Create(filename)
@@ -324,11 +332,6 @@ func GenAndWriteToCSV[T csvable](r *rand.Rand, filename string, quantity uint, g
 		panic(err)
 	}
 	writer := csv.NewWriter(file)
-
-	err = writer.Write(header)
-	if err != nil {
-		panic(err)
-	}
 
 	err = writer.WriteAll(data)
 	if err != nil {
