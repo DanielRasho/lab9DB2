@@ -13,10 +13,51 @@ const MAX_RESTAURANTS int = 50
 const MAX_CLIENTS int = 400
 const MAX_ORDERS int = 1000
 const MAX_REVIEWS int = 1000
+const MAX_DISHES int = 300
 
 func pickFromSlice[T any](r *rand.Rand, slice []T) T {
 	idx := r.Intn(len(slice))
 	return slice[idx]
+}
+
+type Dish struct {
+	name    string
+	country string
+}
+
+func (self Dish) toCSV() []string {
+	b := []string{}
+
+	b = append(b, self.name)
+	b = append(b, self.country)
+
+	return b
+}
+
+func createRandomDish(r *rand.Rand) Dish {
+	menuItemNames := []string{
+		"Nigiri",
+		"Miso Soup",
+		"Pizza Pepperoni",
+		"Pizza Margarita",
+		"Butter Chicken",
+	}
+
+	countryNames := []string{
+		"Japan",
+		"Guatemala",
+		"Italia",
+		"Estados Unidos",
+		"Francia",
+	}
+
+	name := pickFromSlice(r, menuItemNames)
+	country := pickFromSlice(r, countryNames)
+
+	return Dish{
+		name:    name,
+		country: country,
+	}
 }
 
 type Review struct {
@@ -185,24 +226,17 @@ func createRandomUser(r *rand.Rand) User {
 }
 
 type MenuItem struct {
-	Name  string
+	Id    string `json:"_id"`
 	Price float64
 }
 
 func createRandomMenuItem(r *rand.Rand) MenuItem {
-	menuItemNames := []string{
-		"Nigiri",
-		"Miso Soup",
-		"Pizza Pepperoni",
-		"Pizza Margarita",
-		"Butter Chicken",
-	}
 
-	name := pickFromSlice(r, menuItemNames)
+	id := r.Intn(MAX_DISHES) + 1
 	price := r.Float64() * 150
 
 	return MenuItem{
-		Name:  name,
+		Id:    strconv.FormatInt(int64(id), 10),
 		Price: price,
 	}
 }
@@ -404,6 +438,16 @@ func main() {
 			"Relevance",
 		}
 		GenAndWriteToCSV(r, "output/reviews.csv", uint(MAX_REVIEWS), createRandomReview, header)
+	}()
+
+	group.Add(1)
+	go func() {
+		defer group.Done()
+		header := []string{
+			"Name",
+			"Country",
+		}
+		GenAndWriteToCSV(r, "output/dishes.csv", uint(MAX_DISHES), createRandomDish, header)
 	}()
 
 	group.Wait()
