@@ -44,7 +44,7 @@ def upload_documents(db, filepath, collection_name, row_parser):
                     log_message("ERROR", f"Unexpected error processing row {idx + 2}: {e}", RED)
 
             if batch:
-                collection.bulk_write(batch, ordered=False)
+                #collection.bulk_write(batch, ordered=False)
                 log_message("OK", f"Inserted {len(batch)} remaining documents.", GREEN)
 
     except FileNotFoundError:
@@ -86,7 +86,7 @@ def parse_restaurant_row(row):
 
         coords = None
         if coords_raw:
-            coords_list = json.loads(coords_raw)
+            coords_list = json.loads(coords_raw)["Coordinates"]
             if isinstance(coords_list, list) and len(coords_list) == 2:
                 coords = {
                     "type": "Point",
