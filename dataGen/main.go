@@ -261,9 +261,12 @@ type Location struct {
 }
 
 func createRandomLocation(r *rand.Rand) Location {
+	latitude := r.Float64()*180 - 90
+	longitude := r.Float64()*360 - 180
+
 	cords := []float64{
-		r.NormFloat64(),
-		r.NormFloat64(),
+		longitude,
+		latitude,
 	}
 
 	return Location{
