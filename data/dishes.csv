@@ -1,0 +1,301 @@
+_id,Name,Country
+1,Butter Chicken,Estados Unidos
+2,Butter Chicken,Francia
+3,Butter Chicken,Guatemala
+4,Nigiri,Estados Unidos
+5,Miso Soup,Francia
+6,Pizza Pepperoni,Japan
+7,Butter Chicken,Estados Unidos
+8,Miso Soup,Francia
+9,Nigiri,Japan
+10,Butter Chicken,Estados Unidos
+11,Pizza Pepperoni,Italia
+12,Butter Chicken,Japan
+13,Miso Soup,Japan
+14,Pizza Pepperoni,Italia
+15,Pizza Margarita,Japan
+16,Miso Soup,Italia
+17,Miso Soup,Japan
+18,Pizza Margarita,Francia
+19,Pizza Pepperoni,Francia
+20,Pizza Margarita,Francia
+21,Butter Chicken,Guatemala
+22,Nigiri,Guatemala
+23,Miso Soup,Francia
+24,Miso Soup,Italia
+25,Miso Soup,Japan
+26,Nigiri,Japan
+27,Nigiri,Japan
+28,Miso Soup,Francia
+29,Pizza Margarita,Japan
+30,Pizza Margarita,Japan
+31,Nigiri,Guatemala
+32,Nigiri,Italia
+33,Pizza Margarita,Estados Unidos
+34,Miso Soup,Guatemala
+35,Miso Soup,Estados Unidos
+36,Pizza Pepperoni,Italia
+37,Nigiri,Guatemala
+38,Pizza Margarita,Francia
+39,Pizza Pepperoni,Guatemala
+40,Butter Chicken,Japan
+41,Nigiri,Francia
+42,Pizza Margarita,Francia
+43,Pizza Margarita,Japan
+44,Pizza Pepperoni,Guatemala
+45,Nigiri,Guatemala
+46,Miso Soup,Francia
+47,Pizza Pepperoni,Italia
+48,Pizza Pepperoni,Estados Unidos
+49,Pizza Pepperoni,Francia
+50,Pizza Margarita,Italia
+51,Pizza Pepperoni,Japan
+52,Pizza Pepperoni,Italia
+53,Miso Soup,Japan
+54,Nigiri,Estados Unidos
+55,Nigiri,Italia
+56,Pizza Margarita,Italia
+57,Pizza Margarita,Francia
+58,Nigiri,Japan
+59,Miso Soup,Italia
+60,Miso Soup,Estados Unidos
+61,Butter Chicken,Guatemala
+62,Nigiri,Guatemala
+63,Nigiri,Estados Unidos
+64,Nigiri,Italia
+65,Miso Soup,Italia
+66,Nigiri,Francia
+67,Miso Soup,Guatemala
+68,Pizza Margarita,Guatemala
+69,Pizza Pepperoni,Guatemala
+70,Butter Chicken,Italia
+71,Pizza Pepperoni,Japan
+72,Butter Chicken,Guatemala
+73,Nigiri,Guatemala
+74,Miso Soup,Italia
+75,Butter Chicken,Japan
+76,Miso Soup,Guatemala
+77,Nigiri,Japan
+78,Pizza Margarita,Italia
+79,Pizza Pepperoni,Japan
+80,Miso Soup,Italia
+81,Pizza Pepperoni,Guatemala
+82,Nigiri,Estados Unidos
+83,Butter Chicken,Francia
+84,Butter Chicken,Japan
+85,Pizza Pepperoni,Francia
+86,Butter Chicken,Japan
+87,Nigiri,Italia
+88,Miso Soup,Japan
+89,Pizza Margarita,Guatemala
+90,Pizza Margarita,Guatemala
+91,Pizza Margarita,Guatemala
+92,Pizza Pepperoni,Japan
+93,Pizza Margarita,Italia
+94,Nigiri,Italia
+95,Butter Chicken,Japan
+96,Miso Soup,Japan
+97,Nigiri,Japan
+98,Butter Chicken,Francia
+99,Miso Soup,Italia
+100,Pizza Pepperoni,Italia
+101,Butter Chicken,Japan
+102,Pizza Pepperoni,Italia
+103,Nigiri,Japan
+104,Pizza Margarita,Guatemala
+105,Miso Soup,Japan
+106,Miso Soup,Guatemala
+107,Nigiri,Italia
+108,Butter Chicken,Japan
+109,Butter Chicken,Francia
+110,Pizza Pepperoni,Guatemala
+111,Pizza Margarita,Japan
+112,Pizza Pepperoni,Francia
+113,Butter Chicken,Japan
+114,Pizza Margarita,Francia
+115,Pizza Margarita,Japan
+116,Nigiri,Japan
+117,Butter Chicken,Japan
+118,Nigiri,Italia
+119,Pizza Pepperoni,Japan
+120,Miso Soup,Estados Unidos
+121,Pizza Pepperoni,Guatemala
+122,Miso Soup,Francia
+123,Nigiri,Japan
+124,Pizza Pepperoni,Francia
+125,Pizza Pepperoni,Estados Unidos
+126,Pizza Margarita,Guatemala
+127,Butter Chicken,Japan
+128,Nigiri,Estados Unidos
+129,Miso Soup,Francia
+130,Butter Chicken,Guatemala
+131,Nigiri,Japan
+132,Butter Chicken,Japan
+133,Pizza Margarita,Japan
+134,Butter Chicken,Japan
+135,Pizza Margarita,Japan
+136,Pizza Margarita,Japan
+137,Nigiri,Italia
+138,Nigiri,Italia
+139,Nigiri,Japan
+140,Pizza Pepperoni,Estados Unidos
+141,Pizza Pepperoni,Guatemala
+142,Pizza Pepperoni,Japan
+143,Butter Chicken,Estados Unidos
+144,Nigiri,Guatemala
+145,Pizza Margarita,Italia
+146,Pizza Pepperoni,Japan
+147,Pizza Margarita,Guatemala
+148,Pizza Pepperoni,Guatemala
+149,Pizza Margarita,Japan
+150,Miso Soup,Guatemala
+151,Nigiri,Italia
+152,Pizza Pepperoni,Estados Unidos
+153,Pizza Margarita,Estados Unidos
+154,Nigiri,Estados Unidos
+155,Nigiri,Francia
+156,Butter Chicken,Francia
+157,Pizza Margarita,Estados Unidos
+158,Pizza Pepperoni,Estados Unidos
+159,Butter Chicken,Guatemala
+160,Nigiri,Guatemala
+161,Pizza Pepperoni,Francia
+162,Nigiri,Francia
+163,Miso Soup,Francia
+164,Miso Soup,Estados Unidos
+165,Pizza Pepperoni,Italia
+166,Miso Soup,Japan
+167,Pizza Pepperoni,Guatemala
+168,Miso Soup,Italia
+169,Pizza Margarita,Estados Unidos
+170,Nigiri,Francia
+171,Pizza Margarita,Estados Unidos
+172,Pizza Margarita,Italia
+173,Butter Chicken,Estados Unidos
+174,Nigiri,Italia
+175,Nigiri,Italia
+176,Nigiri,Italia
+177,Butter Chicken,Estados Unidos
+178,Butter Chicken,Japan
+179,Pizza Pepperoni,Francia
+180,Nigiri,Guatemala
+181,Pizza Margarita,Italia
+182,Miso Soup,Francia
+183,Nigiri,Japan
+184,Miso Soup,Estados Unidos
+185,Nigiri,Francia
+186,Nigiri,Francia
+187,Miso Soup,Estados Unidos
+188,Pizza Pepperoni,Italia
+189,Butter Chicken,Japan
+190,Butter Chicken,Guatemala
+191,Nigiri,Italia
+192,Miso Soup,Italia
+193,Nigiri,Estados Unidos
+194,Pizza Pepperoni,Italia
+195,Pizza Pepperoni,Italia
+196,Pizza Margarita,Italia
+197,Pizza Margarita,Italia
+198,Nigiri,Japan
+199,Pizza Pepperoni,Italia
+200,Pizza Margarita,Guatemala
+201,Nigiri,Italia
+202,Pizza Margarita,Italia
+203,Pizza Margarita,Guatemala
+204,Nigiri,Francia
+205,Pizza Margarita,Francia
+206,Miso Soup,Estados Unidos
+207,Nigiri,Francia
+208,Nigiri,Japan
+209,Pizza Pepperoni,Francia
+210,Nigiri,Japan
+211,Miso Soup,Italia
+212,Nigiri,Guatemala
+213,Pizza Margarita,Francia
+214,Pizza Pepperoni,Guatemala
+215,Pizza Pepperoni,Estados Unidos
+216,Pizza Pepperoni,Francia
+217,Pizza Margarita,Guatemala
+218,Pizza Margarita,Francia
+219,Nigiri,Japan
+220,Miso Soup,Italia
+221,Nigiri,Guatemala
+222,Butter Chicken,Italia
+223,Nigiri,Francia
+224,Miso Soup,Guatemala
+225,Pizza Pepperoni,Italia
+226,Nigiri,Estados Unidos
+227,Miso Soup,Japan
+228,Miso Soup,Italia
+229,Pizza Pepperoni,Francia
+230,Pizza Pepperoni,Guatemala
+231,Butter Chicken,Guatemala
+232,Pizza Pepperoni,Francia
+233,Pizza Pepperoni,Guatemala
+234,Pizza Margarita,Guatemala
+235,Miso Soup,Italia
+236,Miso Soup,Italia
+237,Pizza Pepperoni,Italia
+238,Pizza Margarita,Estados Unidos
+239,Miso Soup,Italia
+240,Nigiri,Japan
+241,Miso Soup,Italia
+242,Pizza Margarita,Estados Unidos
+243,Pizza Margarita,Francia
+244,Miso Soup,Guatemala
+245,Miso Soup,Italia
+246,Pizza Margarita,Japan
+247,Pizza Pepperoni,Japan
+248,Pizza Pepperoni,Guatemala
+249,Butter Chicken,Japan
+250,Pizza Margarita,Japan
+251,Nigiri,Japan
+252,Miso Soup,Guatemala
+253,Miso Soup,Francia
+254,Nigiri,Guatemala
+255,Nigiri,Guatemala
+256,Miso Soup,Guatemala
+257,Pizza Margarita,Italia
+258,Miso Soup,Japan
+259,Pizza Pepperoni,Japan
+260,Pizza Pepperoni,Francia
+261,Miso Soup,Italia
+262,Miso Soup,Estados Unidos
+263,Nigiri,Estados Unidos
+264,Nigiri,Guatemala
+265,Nigiri,Guatemala
+266,Pizza Pepperoni,Estados Unidos
+267,Nigiri,Estados Unidos
+268,Butter Chicken,Italia
+269,Nigiri,Japan
+270,Miso Soup,Francia
+271,Pizza Pepperoni,Guatemala
+272,Miso Soup,Italia
+273,Butter Chicken,Japan
+274,Miso Soup,Japan
+275,Nigiri,Italia
+276,Pizza Pepperoni,Guatemala
+277,Pizza Margarita,Italia
+278,Miso Soup,Italia
+279,Butter Chicken,Guatemala
+280,Pizza Margarita,Estados Unidos
+281,Miso Soup,Guatemala
+282,Pizza Pepperoni,Guatemala
+283,Pizza Margarita,Italia
+284,Pizza Margarita,Guatemala
+285,Nigiri,Italia
+286,Pizza Margarita,Guatemala
+287,Pizza Margarita,Italia
+288,Pizza Pepperoni,Estados Unidos
+289,Miso Soup,Guatemala
+290,Nigiri,Japan
+291,Pizza Margarita,Guatemala
+292,Nigiri,Japan
+293,Miso Soup,Estados Unidos
+294,Miso Soup,Italia
+295,Pizza Pepperoni,Japan
+296,Pizza Pepperoni,Estados Unidos
+297,Pizza Pepperoni,Guatemala
+298,Nigiri,Guatemala
+299,Butter Chicken,Francia
+300,Butter Chicken,Francia
